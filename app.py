@@ -232,18 +232,16 @@ with st.sidebar:
     st.markdown("## ◈ ECONOMIA AI")
     st.caption("INTELLIGENCE WORKSPACE")
     st.divider()
-
     pagina = st.radio(
         "ESPACIO DE TRABAJO",
         [
             "💬 Chat económico",
             "📈 Gráficas económicas",
-            "🧠 Memoria permanente"
+            "🧠 Memoria permanente",
             "📊 Laboratorio econométrico"
         ],
         label_visibility="visible"
     )
-
     st.divider()
 
     st.caption("ADMINISTRACIÓN")
