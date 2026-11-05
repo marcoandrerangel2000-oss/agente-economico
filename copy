@@ -1,0 +1,88 @@
+
+import streamlit as st
+from main import ejecutar_agente
+
+st.set_page_config(
+    page_title="Agente Económico IA",
+    page_icon="📊",
+    layout="wide"
+)
+
+st.markdown("""
+<style>
+    .block-container {
+        padding-top: 2rem;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #f5f7fa;
+    }
+    .stChatMessage {
+        border: 1px solid #dddddd;
+        border-radius: 12px;
+        padding: 12px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.title("🤖 Agente IA")
+    st.caption("Tu asistente económico de confianza")
+
+    st.divider()
+
+    st.subheader("💡 ¿Qué puedo hacer?")
+    st.write(
+        "Puedo ayudarte con análisis económico, "
+        "resolver dudas e interpretar indicadores."
+    )
+
+    st.subheader("📊 Capacidades principales")
+    st.write("✔ Análisis económico")
+    st.write("✔ Interpretación de indicadores")
+    st.write("✔ Consultas del PIB")
+
+    st.subheader("⚙️ Herramientas incluidas")
+    st.write("• Inteligencia artificial Groq")
+    st.write("• API del Banco Mundial")
+    st.write("• Memoria temporal")
+
+    st.divider()
+
+    if st.button("🗑️ Nueva conversación"):
+        st.session_state.mensajes = []
+        st.rerun()
+
+st.title("💬 Conversación con el Agente IA")
+st.caption("Consulta información económica y recibe respuestas.")
+
+if "mensajes" not in st.session_state:
+    st.session_state.mensajes = []
+
+for mensaje in st.session_state.mensajes:
+    with st.chat_message(mensaje["role"]):
+        st.markdown(mensaje["content"])
+
+pregunta = st.chat_input("Escribe tu pregunta o solicitud...")
+
+if pregunta:
+    st.session_state.mensajes.append({
+        "role": "user",
+        "content": pregunta
+    })
+
+    with st.chat_message("user"):
+        st.markdown(pregunta)
+
+    with st.chat_message("assistant"):
+        with st.spinner("Analizando información económica..."):
+            try:
+                respuesta = ejecutar_agente(pregunta)
+                st.markdown(respuesta)
+
+                st.session_state.mensajes.append({
+                    "role": "assistant",
+                    "content": respuesta
+                })
+
+            except Exception as error:
+                st.error(f"Error al consultar el agente: {error}")
