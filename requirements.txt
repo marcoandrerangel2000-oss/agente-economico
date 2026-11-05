@@ -4,3 +4,8 @@ python-dotenv
 requests
 pandas
 plotly
+pandas
+numpy
+statsmodels
+scipy
+openpyxl
