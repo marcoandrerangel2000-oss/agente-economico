@@ -1,4 +1,4 @@
-
+from econometric_ui import mostrar_econometria
 import streamlit as st
 
 from main import ejecutar_agente, USUARIO
