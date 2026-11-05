@@ -239,6 +239,7 @@ with st.sidebar:
             "💬 Chat económico",
             "📈 Gráficas económicas",
             "🧠 Memoria permanente"
+            "📊 Laboratorio econométrico"
         ],
         label_visibility="visible"
     )
@@ -271,6 +272,7 @@ with st.sidebar:
 # GRÁFICAS
 # ==========================================
 
+
 if pagina == "📈 Gráficas económicas":
 
     hero(
@@ -282,6 +284,22 @@ if pagina == "📈 Gráficas económicas":
     mostrar_graficas()
     st.stop()
 
+
+# ==========================================
+# LABORATORIO ECONOMÉTRICO
+# ==========================================
+
+if pagina == "📊 Laboratorio econométrico":
+
+    hero(
+        "ECONOMETRIC LAB",
+        "Laboratorio econométrico",
+        "Ejecuta modelos ARIMA, VAR y VECM, "
+        "analiza series de tiempo y genera pronósticos."
+    )
+
+    mostrar_econometria()
+    st.stop()
 
 # ==========================================
 # MEMORIA
